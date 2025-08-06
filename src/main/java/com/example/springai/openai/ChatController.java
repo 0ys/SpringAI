@@ -17,4 +17,9 @@ public class ChatController {
     public String chat(@RequestBody String userMessage) {
         return chatService.chat(userMessage);
     }
+
+    @PostMapping("/ssafy")
+    public String ssafyChat(@RequestBody String userMessage) {
+        return chatService.ssafyChat(userMessage);
+    }
 }
