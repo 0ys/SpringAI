@@ -6,6 +6,7 @@ import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestClient;
 
 @Configuration
 public class ChatConfig {
@@ -22,10 +23,11 @@ public class ChatConfig {
     private String temperature;
 
     @Bean
-    public OpenAiChatModel openAiChatModel() {
+    public OpenAiChatModel openAiChatModel(RestClient.Builder restClientBuilder) {
         OpenAiApi openAiApi = OpenAiApi.builder()
                 .apiKey(apiKey)
                 .baseUrl(baseUrl)
+                .restClientBuilder(restClientBuilder)
                 .build();
 
         OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
